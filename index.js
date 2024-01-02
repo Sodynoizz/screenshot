@@ -1,9 +1,11 @@
 import express from "express";
 import bodyParser from "body-parser";
 import cors from "cors";
+import dotenv from "dotenv";
 import puppeteer from "puppeteer-core";
 import chromium from "@sparticuz/chromium";
 
+dotenv.config();
 const app = express();
 const port = process.env.PORT || 5000;
 

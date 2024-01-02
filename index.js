@@ -20,9 +20,8 @@ const capture = async (url, width = 1080, height = 1920) => {
           "--no-sandbox",
           "--disable-setuid-sandbox",
           "--disable-dev-shm-usage",
-          "--single-process",
         ],
-        executablePath: await chromium.executablePath,
+        executablePath: await chromium.executablePath(),
         headless: chromium.headless,
         ignoreDefaultArgs: ["--disable-extensions"],
       }
@@ -41,7 +40,7 @@ const capture = async (url, width = 1080, height = 1920) => {
   try {
     const page = await browser.newPage();
     await page.setViewport({ width, height });
-    await page.goto(url, { waitUntil: "networkidle0" });
+    await page.goto(url, { waitUntil: "networkidle2" });
     return await page.screenshot({ type: "jpeg", omitBackground: true });
   } finally {
     await browser.close();
